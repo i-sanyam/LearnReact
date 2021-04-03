@@ -2,11 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const App = () => {
+  const style = {backgroundColor: 'blue', color: 'white'};
   return (
   <div>
-    <label for = "name">Enter Name</label>
+    <label className = "label" htmlFor = "name">
+      Enter Name
+    </label>
     <input id = "name"/>
-    <button style= {{backgroundColor: 'blue', color: 'white'}}>Submit</button>
+    <button style= {style}>Submit</button>
   </div>
   );
 }
