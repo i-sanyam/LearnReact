@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import CommentDetail from './CommentDetail';
 import Faker from 'faker';
+import ApprovalCard from './ApprovalCard'
 
 const App = () => {
-  console.log(Faker.date.recent());
   return (
     <div className='ui comments containter'>
-      <CommentDetail
-        commentText={Faker.lorem.words()}
-        author={Faker.name.firstName()}
-        avatarSrc={Faker.image.avatar()}
-        timeAgo={Faker.date.recent().toString()} />
+      <ApprovalCard>
+        <CommentDetail
+          commentText={Faker.lorem.words()}
+          author={Faker.name.firstName()}
+          avatarSrc={Faker.image.avatar()}
+          timeAgo={Faker.date.recent().toString()} />
+      </ApprovalCard>
       <CommentDetail
         commentText={Faker.lorem.words()}
         author={Faker.name.firstName()}
