@@ -7,20 +7,13 @@ class App extends React.Component {
     console.log('I am inside constructor fn');
     super(props);
     this.state = { lat: null, errorMessage: null };
+  }
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition((geoPosition) => {
       this.setState({ lat: geoPosition.coords.latitude });
     }, (error) => {
       this.setState({ errorMessage: error.message })
     });
-  }
-  componentDidMount() {
-    console.log('I am in componentDidMount fn')
-  }
-  componentDidUpdate() {
-    console.log('I am in componentDidUpdate fn');
-  }
-  componentWillUnmount() {
-    console.log('I am in componentWillUnmount fn');
   }
   render() {
     console.log("I am inside reder fn")
