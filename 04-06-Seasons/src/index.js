@@ -12,13 +12,12 @@ class App extends React.Component {
     });
   }
   render() {
-    console.log("I am inside reder fn")
     if (this.state.lat && !this.state.errorMessage) {
       return (
         <div>
           Latitude: {this.state.lat}
           <br />
-          <SeasonDisplay />
+          <SeasonDisplay lat={this.state.lat}/>
         </div>
       );
     } else if (this.state.errorMessage) {
@@ -26,11 +25,10 @@ class App extends React.Component {
         <div>
           Error: {this.state.errorMessage}
           <br />
-          <SeasonDisplay />
         </div>
       );
     }
-    return <div>Loading....</div>;
+    return <div><i className="icon spinner" /></div>;
   }
 }
 
