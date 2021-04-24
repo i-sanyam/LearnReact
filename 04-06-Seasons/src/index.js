@@ -29,7 +29,7 @@ class App extends React.Component {
         </div>
       );
     }
-    return <Loader/>
+    return <Loader message='Please allow app to know your location'/>
   }
 }
 
