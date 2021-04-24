@@ -1,5 +1,5 @@
+import './SeasonDisplay.css'
 import React from 'react';
-// import ReactDOM from 'react-dom';
 
 function getSeason(lat, month) {
   if (month > 2 && month < 9) {
@@ -20,11 +20,11 @@ const SeasonDisplay = (props) => {
   }
 
   return (
-    <div>
-      <i className={`icon ${icon}`}/>
+    <div className={`season-display ${season}`}>
+      <i className={`icon massive icon-left ${icon}`} />
       <h1>{text}</h1>
-      <i className={`icon ${icon}`}/>
-      </div>
+      <i className={`icon massive icon-right ${icon}`} />
+    </div>
   );
 }
 
