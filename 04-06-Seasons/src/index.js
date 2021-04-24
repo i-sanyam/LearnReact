@@ -12,7 +12,7 @@ class App extends React.Component {
       this.setState({ errorMessage: error.message })
     });
   }
-  render() {
+  renderContent() { // helper function
     if (this.state.lat && !this.state.errorMessage) {
       return (
         <div>
@@ -30,6 +30,13 @@ class App extends React.Component {
       );
     }
     return <Loader message='Please allow app to know your location'/>
+  }
+  render() {
+    return (
+      <div style = {{border: '10px solid red'}}>
+        {this.renderContent()}
+      </div>
+    );
   }
 }
 
