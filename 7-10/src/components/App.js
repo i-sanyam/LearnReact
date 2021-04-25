@@ -1,19 +1,18 @@
 import React from 'react';
-import unsplash from '../api/unsplash.js'
-import SearchBar from './SearchBar.js'
+import unsplash from '../api/unsplash'
+import SearchBar from './SearchBar'
+import ImageList from './ImageList'
 
 class App extends React.Component {
   state = { imageArray: [] };
   onSearchSubmit = async searchQuery => {
-    console.log(searchQuery);
     try {
       const response = await unsplash.get('/search/photos', {
         params: {
           query: searchQuery
         }
       });
-      console.log(response.data.results);
-      this.setState({imageArray: response.data.results});
+      this.setState({ imageArray: response.data.results });
     } catch (err) {
       console.error(err);
     }
@@ -22,6 +21,7 @@ class App extends React.Component {
     return (
       <div className='ui container' style={{ 'marginTop': '10px' }}>
         <SearchBar onSubmit={this.onSearchSubmit} />
+        <ImageList images={this.state.imageArray} />
         Found {this.state.imageArray.length} images
       </div>
     );
