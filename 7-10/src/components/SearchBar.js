@@ -1,14 +1,14 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-  state = { term: '' };
+  state = { term: 'Enter your search item' };
   render() {
     return (
       <div className='ui segment'>
       <form className = 'ui form'>
         <div className='field'>
           <label>Image Search</label>
-            <input type="text" onChange={(e) => this.setState({ term: e.target.value })}/>
+            <input type="text" onChange={(e) => this.setState({ term: e.target.value.toUpperCase() })}/>
         </div>
       </form>
       </div>
