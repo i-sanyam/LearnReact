@@ -4,7 +4,6 @@ import axios from 'axios';
 const Search = () => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
-  console.log('I RENDER');
   useEffect(() => {
     const search = async () => {
       const { data } = await axios.get('https://en.wikipedia.org/w/api.php', {
@@ -20,9 +19,14 @@ const Search = () => {
         setResults(data.query.search);
       }
     };
-    if (query) {
-      search();
-    }
+    const timeoutId = setTimeout(() => {
+      if (query) {
+        search();
+      }
+    }, 500);
+    return (() => {
+      clearInterval(timeoutId);
+    });
   }, [query]);
   const renderedResults = results.map(result => {
     return (
