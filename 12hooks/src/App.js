@@ -1,7 +1,8 @@
-import React from 'react';
-// import Accordion from './Accordion';
-import Search from './Search';
-const items = [
+import React, { useState } from 'react';
+import Accordion from './components/Accordion';
+import Search from './components/Search';
+import Dropdown from './components/Dropdown';
+const accordionItems = [
   {
     title: 'What is React?',
     content: 'React is a popular front end JS library used widely, developed by Facebook'
@@ -13,12 +14,35 @@ const items = [
     content: 'Make different components and wire them together'
   }
 ];
-
+const colorOptions = [
+  {
+    label: 'Color Red',
+    value: 'red'
+  },
+  {
+    label: 'A Shade of Green',
+    value: 'green'
+  },
+  {
+    label: 'Color Blue',
+    value: 'blue'
+  }
+];
 const App = () => {
+  const [dropdownSelected, setDropdownSelected] = useState(colorOptions[0]);
+  const [dropdownVisible, setDropdownVisible] = useState(true);
   return (
     <div>
-      {/* <Accordion items={items} /> */}
-      <Search />
+      {/* <Accordion items={accordionItems} /> */}
+      {/* <Search /> */}
+      <button onClick={() => setDropdownVisible(!dropdownVisible)}>
+        Toggle Dropdown
+        </button>
+      {dropdownVisible ? <Dropdown
+        options={colorOptions}
+        selected={dropdownSelected}
+        onSelectedChange={setDropdownSelected}
+      /> : null}
     </div>);
 }
 
