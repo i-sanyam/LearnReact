@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ dropdownKind, options, selected, onSelectedChange }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const dropdownRef = useRef();
 
   useEffect(() => {
     const onBodyClick = (event) => {
       if (dropdownRef.current.contains(event.target)) {
-        console.log('BODY RETURN EARLY');
+        // console.log('BODY RETURN EARLY');
         return;
       }
-      console.log("BODY CLICK");
+      // console.log("BODY CLICK");
       setOpenDropdown(false);
     }
     document.body.addEventListener('click', onBodyClick, { capture: true });
@@ -26,7 +26,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
         className='item'
         key={option.value}
         onClick={() => {
-          console.log('ITEM CLICK');
+          // console.log('ITEM CLICK');
           onSelectedChange(option);
         }}
       >
@@ -37,10 +37,10 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   return (
     <div className='ui form' ref={dropdownRef}>
       <div className='field'>
-        <label className='label'>Select a Color</label>
+        <label className='label'>Select a {dropdownKind}</label>
         <div
           onClick={() => {
-            console.log("MENU CLICK!");
+            // console.log("MENU CLICK!");
             setOpenDropdown(!openDropdown);
           }}
           className={`ui selection dropdown ${openDropdown === true ? 'visible active' : ''}`}>
@@ -50,7 +50,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
             {colorRenderedList}
           </div>
         </div>
-        <div className='text' style={{ color: `${selected.value}` }}>I am a text colored in { selected.value }.</div>
+        {dropdownKind === 'Color' ? <div className='text' style={{ color: `${selected.value}` }}>I am a text colored in {selected.value}.</div> : null}
       </div>
     </div>
   );

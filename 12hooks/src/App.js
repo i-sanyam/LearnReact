@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
+import Translate from './components/Translate';
+
 const accordionItems = [
   {
     title: 'What is React?',
@@ -29,20 +31,18 @@ const colorOptions = [
   }
 ];
 const App = () => {
-  const [dropdownSelected, setDropdownSelected] = useState(colorOptions[0]);
-  const [dropdownVisible, setDropdownVisible] = useState(true);
+  // const [dropdownSelected, setDropdownSelected] = useState(colorOptions[0]);
   return (
     <div>
       {/* <Accordion items={accordionItems} /> */}
       {/* <Search /> */}
-      <button onClick={() => setDropdownVisible(!dropdownVisible)}>
-        Toggle Dropdown
-        </button>
-      {dropdownVisible ? <Dropdown
+      {/* <Dropdown
+        dropdownKind = 'Color'
         options={colorOptions}
         selected={dropdownSelected}
         onSelectedChange={setDropdownSelected}
-      /> : null}
+      /> */}
+      <Translate />
     </div>);
 }
 
