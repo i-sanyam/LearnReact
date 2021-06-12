@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import Dropdown from './Dropdown';
+import Convert from './Convert';
 
 const langOptions = [
+  {
+    label: 'Punjabi',
+    value: 'pa'
+  },
   {
     label: 'Afrikaans',
     value: 'af',
@@ -33,8 +38,11 @@ const Translate = () => {
         selected={language}
         onSelectedChange={setLanguage}
       />
+      <hr />
+      <Convert text={text} language={language}/>
     </div>
   );
 }
 
 export default Translate;
+//AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM
