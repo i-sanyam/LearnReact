@@ -1,41 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import youtube from '../api/youtube';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
 const App = () => {
-  const videoState = useState({
+  const [videoState, setVideoState] = useState({
     videos: [],
     selectedVideo: null
   });
-  componentDidMount() {
-    this.onSearchSubmit('trending');
-  }
-  onSearchSubmit = async query => {
+  useEffect(() => {
+    onSearchSubmit('trending');
+  }, []);
+  const onSearchSubmit = async query => {
     const response = await youtube.get('/search', {
       params: {
         q: query
       }
     });
-    this.setState({
+    setVideoState({
       videos: response.data.items,
       selectedVideo: response.data.items && response.data.items[0]
     });
   }
-  onVideoSelect = video => {
-    this.setState({ selectedVideo: video });
-  }
   return (
     <div className='ui container'>
-      <SearchBar onSearchSubmit={this.onSearchSubmit} />
+      <SearchBar onSearchSubmit={onSearchSubmit} />
       <div className='ui grid'>
         <div className='ui row'>
           <div className='eleven wide column'>
-            <VideoDetail video={this.state.selectedVideo} />
+            <VideoDetail video={videoState.selectedVideo} />
           </div>
           <div className='five wide column'>
-            <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+            <VideoList
+              onVideoSelect={v => setVideoState({
+                videos: videoState.videos,
+                selectedVideo: v
+              })}
+              videos={videoState.videos} />
           </div>
         </div>
       </div>
