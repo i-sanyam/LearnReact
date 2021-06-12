@@ -15,6 +15,7 @@ const Dropdown = ({ dropdownKind, options, selected, onSelectedChange }) => {
     }
     document.body.addEventListener('click', onBodyClick, { capture: true });
     return () => {
+      // this is important to clean up in the event this component does not remain any longer
       document.body.removeEventListener('click', onBodyClick, { capture: true });
     };
   }, []);
