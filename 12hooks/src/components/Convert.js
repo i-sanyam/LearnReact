@@ -17,6 +17,7 @@ const Convert = ({ text, language }) => {
     }
     const timeoutId = setTimeout(() => {
       if (text) {
+        console.log('hit translate');
         translate();
       };
     }, 500);

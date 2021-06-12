@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-const Route = ({ href, children, setCurrentActive}) => {
-  const [currentPath, setCurrentPath] = useState('/');
+const Route = ({ href, children, setCurrentActive, currentActive}) => {
+  const [currentPath, setCurrentPath] = useState(currentActive);
   useEffect(() => {
     const onRouteChange = () => {
       setCurrentPath(window.location.pathname);

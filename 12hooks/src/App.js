@@ -57,14 +57,20 @@ const App = () => {
   const [currentActive, setCurrentActive] = useState(window.location.pathname || menuItems[0].link);
   return (
     <div>
-      <Header menuItems={menuItems} currentActive={currentActive}/>
-      <Route href='/' setCurrentActive={setCurrentActive}>
+      <Header menuItems={menuItems} currentActive={currentActive} />
+      <Route href='/'
+        setCurrentActive={setCurrentActive}
+        currentActive={currentActive}>
         <Accordion items={accordionItems} />
       </Route>
-      <Route href='/search' setCurrentActive={setCurrentActive}>
+      <Route href='/search'
+        setCurrentActive={setCurrentActive}
+        currentActive={currentActive}>
         <Search />
       </Route>
-      <Route href='/dropdown' setCurrentActive={setCurrentActive}>
+      <Route href='/dropdown'
+        setCurrentActive={setCurrentActive}
+        currentActive={currentActive}>
         <Dropdown
           dropdownKind='Color'
           options={colorOptions}
@@ -72,7 +78,9 @@ const App = () => {
           onSelectedChange={setDropdownSelected}
         />
       </Route>
-      <Route href='/translate' setCurrentActive={setCurrentActive}>
+      <Route href='/translate'
+        setCurrentActive={setCurrentActive}
+        currentActive={currentActive}>
         <Translate />
       </Route>
     </div>
