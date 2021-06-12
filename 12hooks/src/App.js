@@ -3,6 +3,8 @@ import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
+import Header from './components/Header';
+import Route from './components/Route';
 
 const accordionItems = [
   {
@@ -30,20 +32,51 @@ const colorOptions = [
     value: 'blue'
   }
 ];
+
+const menuItems = [
+  {
+    link: '/',
+    text: "Accordion"
+  },
+  {
+    link: '/search',
+    text: "Search"
+  },
+  {
+    link: '/dropdown',
+    text: "Dropdown"
+  },
+  {
+    link: '/translate',
+    text: "Translate"
+  }
+];
+
 const App = () => {
-  // const [dropdownSelected, setDropdownSelected] = useState(colorOptions[0]);
+  const [dropdownSelected, setDropdownSelected] = useState(colorOptions[0]);
+  const [currentActive, setCurrentActive] = useState(window.location.pathname || menuItems[0].link);
   return (
     <div>
-      {/* <Accordion items={accordionItems} /> */}
-      {/* <Search /> */}
-      {/* <Dropdown
-        dropdownKind = 'Color'
-        options={colorOptions}
-        selected={dropdownSelected}
-        onSelectedChange={setDropdownSelected}
-      /> */}
-      <Translate />
-    </div>);
+      <Header menuItems={menuItems} currentActive={currentActive}/>
+      <Route href='/' setCurrentActive={setCurrentActive}>
+        <Accordion items={accordionItems} />
+      </Route>
+      <Route href='/search' setCurrentActive={setCurrentActive}>
+        <Search />
+      </Route>
+      <Route href='/dropdown' setCurrentActive={setCurrentActive}>
+        <Dropdown
+          dropdownKind='Color'
+          options={colorOptions}
+          selected={dropdownSelected}
+          onSelectedChange={setDropdownSelected}
+        />
+      </Route>
+      <Route href='/translate' setCurrentActive={setCurrentActive}>
+        <Translate />
+      </Route>
+    </div>
+  );
 }
 
 export default App;
