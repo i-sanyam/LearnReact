@@ -5,10 +5,9 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
 const App = () => {
-  const [videoState, setVideoState] = useState({
-    videos: [],
-    selectedVideo: null
-  });
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  
   useEffect(() => {
     onSearchSubmit('trending');
   }, []);
@@ -18,10 +17,8 @@ const App = () => {
         q: query
       }
     });
-    setVideoState({
-      videos: response.data.items,
-      selectedVideo: response.data.items && response.data.items[0]
-    });
+    setVideos(response.data.items);
+    setSelectedVideo(response.data.items && response.data.items[0]);
   }
   return (
     <div className='ui container'>
@@ -29,15 +26,12 @@ const App = () => {
       <div className='ui grid'>
         <div className='ui row'>
           <div className='eleven wide column'>
-            <VideoDetail video={videoState.selectedVideo} />
+            <VideoDetail video={selectedVideo} />
           </div>
           <div className='five wide column'>
             <VideoList
-              onVideoSelect={v => setVideoState({
-                videos: videoState.videos,
-                selectedVideo: v
-              })}
-              videos={videoState.videos} />
+              onVideoSelect={setSelectedVideo}
+              videos={videos} />
           </div>
         </div>
       </div>
